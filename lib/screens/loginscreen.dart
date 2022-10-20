@@ -5,6 +5,26 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            const Text(
+              'logo',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              'Sin up or Login',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 24),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

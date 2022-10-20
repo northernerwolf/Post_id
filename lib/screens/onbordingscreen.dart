@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:post_id/models/conttent_models.dart';
+import 'package:post_id/screens/loginscreen.dart';
 
 class OnebordingScreen extends StatefulWidget {
   const OnebordingScreen({Key? key}) : super(key: key);
@@ -12,6 +13,21 @@ class OnebordingScreen extends StatefulWidget {
 
 class _OnebordingScreenState extends State<OnebordingScreen> {
   int currentIndex = 0;
+  late PageController _controller;
+
+  @override
+  void initState() {
+    _controller = PageController(initialPage: 0);
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +36,7 @@ class _OnebordingScreenState extends State<OnebordingScreen> {
           children: [
             Expanded(
               child: PageView.builder(
+                controller: _controller,
                 itemCount: contents.length,
                 onPageChanged: (int index) {
                   setState(() {
@@ -70,8 +87,16 @@ class _OnebordingScreenState extends State<OnebordingScreen> {
               margin: EdgeInsets.all(40),
               width: double.infinity,
               child: FlatButton(
-                child: const Text('next'),
-                onPressed: () {},
+                child: const Text('Get Started'),
+                onPressed: () {
+                  if (currentIndex == contents.length - 1) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+                  }
+                  _controller.nextPage(
+                      duration: Duration(microseconds: 100),
+                      curve: Curves.bounceIn);
+                },
                 color: Colors.grey,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),

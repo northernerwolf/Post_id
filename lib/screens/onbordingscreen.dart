@@ -110,12 +110,13 @@ class _OnebordingScreenState extends State<OnebordingScreen> {
 
   Container builtDec(int index, BuildContext context) {
     return Container(
-      height: 10,
-      width: 10,
+      height: 12,
+      width: 12,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
           borderRadius: BorderRadius.circular(20),
-          color: currentIndex == index ? Colors.white : Colors.grey),
+          color: currentIndex == index ? Colors.grey : Colors.white),
     );
   }
 }
